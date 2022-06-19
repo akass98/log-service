@@ -1,0 +1,33 @@
+{
+  "name": "@supreme/log-service",
+  "version": "1.0.0",
+  "description": "package to handle and save logs across the application",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akass98/log-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akass98/log-service/issues"
+  },
+  "homepage": "https://github.com/akass98/log-service#readme",
+  "keywords": [
+    "log",
+    "winston",
+    "console"
+  ],
+  "author": "Assaf Kaner",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.3",
+    "ts-node": "^10.8.1",
+    "tsc-watch": "^5.0.3"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.42",
+    "winston": "^3.7.2"
+  }
+}
