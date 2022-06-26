@@ -20,6 +20,7 @@ export interface DataFields {
     fullMessage?: string,
     attachedObject?: string,
     objectDescription?: string,
+    service_name?: string,
 }
 
 export interface LogContentFormat {
@@ -48,22 +49,22 @@ export default class WinstonLog {
     }
 
     debug(Title: string, Data: DataFields = {}) {
-        this.log(LogLevelEnum.Debug, Title, Data);
+        this.log(LogLevelEnum.Debug, Title, Data, Data?.service_name);
     }
     info(Title: string, Data: DataFields = {}) {
-        this.log(LogLevelEnum.Info, Title, Data);
+        this.log(LogLevelEnum.Info, Title, Data ,Data?.service_name);
     }
     warn(Title: string, Data: DataFields = {}) {
-        this.log(LogLevelEnum.Warn, Title, Data);
+        this.log(LogLevelEnum.Warn, Title, Data, Data?.service_name);
     }
     error(Title: string, Data: DataFields = {}) {
-        this.log(LogLevelEnum.Error, Title, Data);
+        this.log(LogLevelEnum.Error, Title, Data, Data?.service_name);
     }
 
-    private log(Level: LogLevelEnum, Title: string, Data: DataFields) {
+    private log(Level: LogLevelEnum, Title: string, Data: DataFields, service_name?: string) {
         const content: LogContentFormat = {
             timestamp: new Date().toISOString(),
-            service_name: this.moduleName,
+            service_name: service_name ?? process.env.LOGGER_MODULE_NAME,
             component: this.subModuleName,
             severity: Level,
             environment: process.env.NODE_ENV || 'non-prod',
