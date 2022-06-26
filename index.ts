@@ -32,33 +32,16 @@ export interface LogContentFormat {
     data: DataFields;
 }
 
-export interface ILoggerData {
-    moduleName: string;
-    logContentFormat: any;
-    logLevel: LogLevelEnum;
-}
-
-
-const loggerData: ILoggerData = {
-    moduleName: '',
-    logContentFormat: {},
-    logLevel: LogLevelEnum.Debug
-}
-
 export default class WinstonLog {
-    moduleName: string = loggerData.moduleName;
     subModuleName: string;
     winstonLogger: Logger;
     logFormat: any;
-    logContentFormat: any = loggerData.logContentFormat;
-    logLevel: LogLevelEnum = loggerData.logLevel;
 
     constructor(subModuleName: string) {
         this.subModuleName = subModuleName;
         this.logFormat = combine(format.json());
-        this.logContentFormat = loggerData.logContentFormat;
         this.winstonLogger = createLogger({
-            level: this.logLevel,
+            level: process.env.LOGGER_LEVEL,
             format: this.logFormat,
             transports: [new transports.Console()],
         });
@@ -108,12 +91,6 @@ export default class WinstonLog {
                 this.winstonLogger.debug(content);
         }
     };
-}
-
-export const loggerInit = (moduleName, logFormat, logLevel) => {
-    loggerData.moduleName = moduleName;
-    loggerData.logContentFormat = logFormat;
-    loggerData.logLevel = logLevel;
 }
 
 export const getLogger = (subModuleName: string) => {
