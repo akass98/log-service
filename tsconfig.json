@@ -7,7 +7,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "outDir": "dist",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+  "declaration": true
   },
   "lib": ["esnext"],
   "include": ["./"]
