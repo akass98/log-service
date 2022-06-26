@@ -29,5 +29,8 @@
   "dependencies": {
     "@types/node": "^17.0.42",
     "winston": "^3.7.2"
-  }
+  },
+  "bundledDependencies": [
+    "dist"
+  ]
 }
